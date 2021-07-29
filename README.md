@@ -2,10 +2,17 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# ERD:
+
+https://dbdiagram.io/d/60ff023328da596eb54e15d0
+
+# WIREFRAME
+
+https://miro.com/app/board/o9J_kiGCSK4=/?fromRedirect=1
+
 ## Utilities
 
 In the `utils` directory, there is a **`HumanDate`** component that you can use anywhere in your application to display a human-friendly date instead of the unfriendly format that is stored in the API database.
-
 
 ## Available Scripts
 
@@ -29,3 +36,49 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+# rare-river-rats
+
+    ..................................................
+    :                    ......                      :
+    :                 .:||||||||:.                   :
+    :                /            \                  :
+    :               (   o      o   )                 :
+    :-------@@@@----------:  :----------@@@@---------:
+    :                     '--'                       :
+    :                                                :
+    :                                                :
+    :        N E W - G U Y   S A Y S   H I !         :
+    :................................................:
+    ..................................................
+    :                    ......                      :
+    :                 .:||||||||:.                   :
+    :                /            \                  :
+    :               (   o      o   )                 :
+    :-------@@@@----------:  :----------@@@@---------:
+    :                     '--'                       :
+    :                                                :
+    :                                                :
+    :      C O O L - G U Y   S A Y S   H I !         :
+    :................................................:
+    ..................................................
+    :                    ......                      :
+    :                 .:||||||||:.                   :
+    :                /            \                  :
+    :               (   o      o   )                 :
+    :-------@@@@----------:  :----------@@@@---------:
+    :                     '--'                       :
+    :                                                :
+    :                                                :
+    :     C H I L L - G U Y   S A Y S   H I !        :
+    :................................................:
+    ..................................................
+    :                    ......                      :
+    :                 .:||||||||:.                   :
+    :                /            \                  :
+    :               (   o      o   )                 :
+    :-------@@@@----------:  :----------@@@@---------:
+    :                     '--'                       :
+    :                                                :
+    :                                                :
+    :      Y O U N G - G U Y   S A Y S   H I !       :
+    :................................................:

@@ -10,7 +10,6 @@ export const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-
     return fetch("http://localhost:8088/login", {
       method: "POST",
       headers: {
