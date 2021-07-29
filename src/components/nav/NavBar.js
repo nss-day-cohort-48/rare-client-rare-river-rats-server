@@ -10,28 +10,32 @@ export const NavBar = () => {
         <ul className="navbar">
             <li className="navbar__item">
                 <img className="navbar__logo" src={Logo} />
+                <div className="navbar__name"> Rare</div>
             </li>
             <li className="navbar__item">
-                <Link className="navbar__link" to="/">Posts</Link>
+                <Link className="navbar__link" to="/">All Posts</Link>
             </li>
-            {
-                (localStorage.getItem("rare_user_id") !== null) ?
-                    <li className="nav-item">
-                        <button className="nav-link fakeLink"
-                            onClick={() => {
-                                localStorage.removeItem("rare_user_id")
-                                history.push({ pathname: "/" })
-                            }}
-                        >Logout</button>
-                    </li> :
-                    <>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/login">Login</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/register">Register</Link>
-                        </li>
-                    </>
-            }        </ul>
+            <li className="navbar__item">
+                <Link className="navbar__link" to="/posts">My Posts</Link>
+            </li>
+            <li className="navbar__item">
+                <Link className="navbar__link" to="/catagories">Category Manager</Link>
+            </li>
+            <li className="navbar__item">
+                <Link className="navbar__link" to="/tags">Tag Manager</Link>
+            </li>
+            <li className="navbar__item">
+                <Link className="navbar__link" to="/rare_users">User Manager</Link>
+            </li>
+            <li className="navbar__item">
+                <Link className="navbar__link" to="/login"
+                    onClick={ //allows the user to logout by removing the current user from the local storage
+                        (event) => {
+                            localStorage.removeItem("rare_user_id")
+                        }
+                    }
+                >Logout</Link>
+            </li>
+        </ul>
     )
 }
