@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Auth.css";
 
 export const Register = (props) => {
+
   const firstName = useRef();
   const lastName = useRef();
   const email = useRef();
@@ -10,8 +11,10 @@ export const Register = (props) => {
   const verifyPassword = useRef();
   const passwordDialog = useRef();
 
+
   const handleRegister = (e) => {
     e.preventDefault();
+
 
     if (password.current.value === verifyPassword.current.value) {
       const newUser = {
