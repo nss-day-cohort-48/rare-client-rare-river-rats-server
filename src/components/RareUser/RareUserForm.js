@@ -97,7 +97,7 @@ export const RareUserForm = () => {
   return (
 
     <form className="RareUserForm">
-      <h2 className="RareUserForm__title"> User</h2>
+      <h2 className="RareUserForm__title"> User </h2>
       <fieldset>
         <div className="form-group">
           <label htmlFor="username"> Choose a Username:  </label>

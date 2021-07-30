@@ -1,11 +1,14 @@
 import React, { useContext, useEffect, useState } from "react"
 import { RareUserContext } from "./RareUserProvider"
 import "./RareUsers.css"
+import { useParams, useHistory } from "react-router-dom"
 
 export const RareUserDetails = (props) => {
     const { releaseRareUser, getRareUserById } = useContext(RareUserContext)
 
     const [rareUser, setRareUser] = useState({})
+
+    const { rareUserId } = useParams()// url of rareUsers
 
     useEffect(() => {
         const rareUserId = parseInt(props.match.params.rareUserId)
@@ -13,19 +16,36 @@ export const RareUserDetails = (props) => {
             .then(setRareUser)
     }, [])
 
+    const history = useHistory()
+
+    const handleRelease = () => {
+        releaseRareUser(rareUser.id).then(() => {
+            history.push("/rareUsers");
+        })
+    }
+
     return (
         <section className="rareUser">
-            <h3 className="rareUser__name">{rareUser.name}</h3>
-            <div className="rareUser__breed">{rareUser.breed}</div>
-            <div className="rareUser__location">Location: {rareUser.location.name}</div>
-            <div className="rareUser__owner">Customer: {rareUser.customer.name}</div>
-            <div className="rareUser__treatment">Treatment: {rareUser.treatment}</div>
+            <div className="rareUser__owner"> {rareUser.profile_image_url}</div>
+            
+            <h3 className="rareUser__first_name">{rareUser.first_name}</h3>
+            <h3 className="rareUser__last_name">{rareUser.last_name}</h3>
+            <div className="rareUser__location">Username: {rareUser.username}</div>
+            
+            <div className="rareUser__bio">Bio:{rareUser.bio}</div>
+            
+            
+            <div className="rareUser__treatment">Date Created {rareUser.created_on}</div>
 
-            <button onClick={() => releaseRareUser(rareUser.id).then(() => props.history.push("/rareUsers"))} >Release rareUser</button>
+            {rareUser === rareUser.id ? <button onClick={() => {
+                handleRelease()
+            }}>Remove User</button> : <div></div>}
 
-            <button onClick={() => {
-                props.history.push(`/rareUsers/edit/${rareUser.id}`)
-            }}>Edit</button>
+            {rareUser === rareUser.id ?
+                <button onClick={() => {
+                    history.push(`/rareUsers/edit/${rareUser.id}`)
+                }}>  Edit User </button> : <div></div>}
+
         </section>
     )
-}2
+}
