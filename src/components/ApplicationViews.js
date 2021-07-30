@@ -3,7 +3,11 @@ import { Route } from "react-router-dom";
 import { PostProvider } from "./posts/PostProvider";
 import { PostList } from "./posts/PostList";
 // import { ProfileProvider } from "./auth/AuthProvider";
-// import { RareUserProvider } from "./RareUser/RareUserProvider";
+import { RareUserProvider } from "./RareUser/RareUserProvider";
+import { RareUserList } from "./RareUser/RareUserList";
+import { RareUserDetail } from "./RareUser/RareUserDetail"
+import { RareUserSearch } from "./RareUser/RareUserSearch"
+import { RareUserForm } from "./RareUser/RareUserForm"
 import { CategoryProvider } from "./categories/CategoryProvider";
 import { Category } from "./categories/Category";
 import { CategoryForm } from "./categories/CategoryForm";
@@ -42,8 +46,21 @@ export const ApplicationViews = () => {
           </TagProvider>
         </CategoryProvider>
       </PostProvider>
-      
-                
+      <RareUserProvider>
+        <Route exact path="/rare_users/create">
+          <RareUserForm />
+        </Route>
+        <Route exact path="/rare_users/detail/:rareUserId(\d+)">
+          <RareUserDetail />
+        </Route>
+        <Route exact path="/rare_users/edit/:rareUserId(\d+)">
+          <RareUserForm />
+        </Route>
+        <Route exact path="/rare_users">
+          <RareUserSearch />
+          <RareUserList />
+        </Route>
+      </RareUserProvider>
     </>
   );
 };
