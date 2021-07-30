@@ -1,20 +1,24 @@
 import React, { useContext, useEffect, useState } from "react"
 import { RareUserContext } from "./RareUserProvider"
-import "./RareUsers.css"
+import "./RareUser.css"
 import { useParams, useHistory } from "react-router-dom"
 
-export const RareUserDetails = (props) => {
+export const RareUserDetail = (props) => {
     const { releaseRareUser, getRareUserById } = useContext(RareUserContext)
 
-    const [rareUser, setRareUser] = useState({})
+    const [rareUser, setRareUsers] = useState({})
 
     const { rareUserId } = useParams()// url of rareUsers
 
-    useEffect(() => {
-        const rareUserId = parseInt(props.match.params.rareUserId)
-        getRareUserById(rareUserId)
-            .then(setRareUser)
-    }, [])
+    useEffect(() => {// runs on first page load, and then every time the state of the JSX changes
+        if (rareUserId) {
+          getRareUserById(parseInt(rareUserId))//after the component renders, go get the rareUser. parse it to change the string to a number
+            .then((rareUserObj) => {  //converts the data
+              setRareUsers(rareUserObj) //then set it
+            });
+        } else { setRareUsers(rareUser) }
+      }, [rareUserId])// iof the array is empty it will run once and then stop.
+      // dependency stops once rareUser id is found
 
     const history = useHistory()
 

@@ -7,6 +7,7 @@ import { RareUserProvider } from "./RareUser/RareUserProvider";
 import { RareUserList } from "./RareUser/RareUserList";
 import { RareUserDetail } from "./RareUser/RareUserDetail"
 import { RareUserSearch } from "./RareUser/RareUserSearch"
+import { RareUserForm } from "./RareUser/RareUserForm"
 // import { CategoryProvier } from "./categories/CategoryProvier";
 // import { CommentProvider } from "./comments/CommentProvider";
 // import { TagProvider } from "./tags/TagProvider";

@@ -1,5 +1,3 @@
-//accepts user input to search
-
 import React, { useContext } from "react"
 import { RareUserContext } from "./RareUserProvider"
 import "./RareUser.css"
