@@ -8,9 +8,13 @@ import { RareUserList } from "./RareUser/RareUserList";
 import { RareUserDetail } from "./RareUser/RareUserDetail"
 import { RareUserSearch } from "./RareUser/RareUserSearch"
 import { RareUserForm } from "./RareUser/RareUserForm"
-// import { CategoryProvier } from "./categories/CategoryProvier";
+import { CategoryProvider } from "./categories/CategoryProvider";
+import { Category } from "./categories/Category";
+import { CategoryForm } from "./categories/CategoryForm";
+import { TagProvider } from "./tags/TagProvider";
+import { Tag } from "./tags/Tag";
+import { TagForm } from "./tags/TagForm";
 // import { CommentProvider } from "./comments/CommentProvider";
-// import { TagProvider } from "./tags/TagProvider";
 
 export const ApplicationViews = () => {
   return (
@@ -22,24 +26,40 @@ export const ApplicationViews = () => {
         }}
       ></main>
       <PostProvider>
-        <Route exact path="/">
-          <PostList />
-        </Route>
+        <CategoryProvider>
+          <TagProvider>
+            <Route exact path="/">
+              <PostList />
+            </Route>
+            <Route exact path="/categories">
+              <Category />
+            </Route>
+            <Route exact path="/categories/create">
+              <CategoryForm />
+            </Route>
+            <Route exact path="/tags">
+              <Tag />
+            </Route>
+            <Route exact path="/tags/create">
+              <TagForm />
+            </Route>
+          </TagProvider>
+        </CategoryProvider>
       </PostProvider>
       <RareUserProvider>
-      <Route exact path="/rare_users/create">
-        <RareUserForm />
+        <Route exact path="/rareUsers/create">
+          <RareUserForm />
         </Route>
-      <Route exact path="/rare_users/detail/:rareUserId(\d+)">
-      <RareUserDetail />
-       </Route>
-      <Route exact path="/rare_users/edit/:rareUserId(\d+)">
-        <RareUserForm />
+        <Route exact path="/rareUsers/detail/:rareUserId(\d+)">
+          <RareUserDetail />
         </Route>
-      <Route exact path="/rare_users">
-         <RareUserSearch />
-         <RareUserList />
-         </Route>
+        <Route exact path="/rareUsers/edit/:rareUserId(\d+)">
+          <RareUserForm />
+        </Route>
+        <Route exact path="/rareUsers">
+          <RareUserSearch />
+          <RareUserList />
+        </Route>
       </RareUserProvider>
     </>
   );
