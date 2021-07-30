@@ -7,8 +7,10 @@ import { PostList } from "./posts/PostList";
 import { CategoryProvider } from "./categories/CategoryProvider";
 import { Category } from "./categories/Category";
 import { CategoryForm } from "./categories/CategoryForm";
+import { TagProvider } from "./tags/TagProvider";
+import { Tag } from "./tags/Tag";
+import { TagForm } from "./tags/TagForm";
 // import { CommentProvider } from "./comments/CommentProvider";
-// import { TagProvider } from "./tags/TagProvider";
 
 export const ApplicationViews = () => {
   return (
@@ -21,16 +23,24 @@ export const ApplicationViews = () => {
       ></main>
       <PostProvider>
         <CategoryProvider>
-        <Route exact path="/">
-          <PostList />
-        </Route>
-      <Route exact path="/categories">
-                    <Category />
-                </Route>
-                <Route exact path="/categories/create">
-                    <CategoryForm />
-                </Route>
-            </CategoryProvider>
+          <TagProvider>
+            <Route exact path="/">
+              <PostList />
+            </Route>
+            <Route exact path="/categories">
+              <Category />
+            </Route>
+            <Route exact path="/categories/create">
+              <CategoryForm />
+            </Route>
+            <Route exact path="/tags">
+              <Tag />
+            </Route>
+            <Route exact path="/tags/create">
+              <TagForm />
+            </Route>
+          </TagProvider>
+        </CategoryProvider>
       </PostProvider>
       
                 
