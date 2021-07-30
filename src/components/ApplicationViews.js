@@ -4,7 +4,9 @@ import { PostProvider } from "./posts/PostProvider";
 import { PostList } from "./posts/PostList";
 // import { ProfileProvider } from "./auth/AuthProvider";
 // import { RareUserProvider } from "./RareUser/RareUserProvider";
-// import { CategoryProvier } from "./categories/CategoryProvier";
+import { CategoryProvider } from "./categories/CategoryProvider";
+import { Category } from "./categories/Category";
+import { CategoryForm } from "./categories/CategoryForm";
 // import { CommentProvider } from "./comments/CommentProvider";
 // import { TagProvider } from "./tags/TagProvider";
 
