@@ -1,55 +1,59 @@
 import React, { useContext, useEffect, useState } from "react"
 import { RareUserContext } from "./RareUserProvider"
 import "./RareUser.css"
-import { useParams, useHistory } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 
-export const RareUserDetail = (props) => {
-    const { releaseRareUser, getRareUserById } = useContext(RareUserContext)
 
-    const [rareUser, setRareUsers] = useState({})
+export const RareUserDetail = () => {
+    const { getRareUserById, releaseRareUser  } = useContext(RareUserContext)
+
+    const [rare_users, setRareUsers] = useState({})
 
     const { rareUserId } = useParams()// url of rareUsers
 
-    useEffect(() => {// runs on first page load, and then every time the state of the JSX changes
+    useEffect(() => {
         if (rareUserId) {
-          getRareUserById(parseInt(rareUserId))//after the component renders, go get the rareUser. parse it to change the string to a number
-            .then((rareUserObj) => {  //converts the data
-              setRareUsers(rareUserObj) //then set it
+            getRareUserById(parseInt(getRareUserById)).then((rareUserObj) => {
+                setRareUsers(rareUserObj)
             });
-        } else { setRareUsers(rareUser) }
-      }, [rareUserId])// iof the array is empty it will run once and then stop.
-      // dependency stops once rareUser id is found
+        } else { setRareUsers(rare_users) }
+    }, [rareUserId]);
 
     const history = useHistory()
 
-    const handleRelease = () => {
-        releaseRareUser(rareUser.id).then(() => {
-            history.push("/rareUsers");
-        })
+    const handleUserRelease = () => {
+        //if user.id === 1 
+        // return all the normal stuff you have so far 
+        //else return all inputs with readOnly 
+        releaseRareUser(rare_users.id)
+            .then(() => {
+                history.push("/rare_users");
+            })
     }
 
     return (
-        <section className="rareUser">
-            <div className="rareUser__owner"> {rareUser.profile_image_url}</div>
-            
-            <h3 className="rareUser__first_name">{rareUser.first_name}</h3>
-            <h3 className="rareUser__last_name">{rareUser.last_name}</h3>
-            <div className="rareUser__location">Username: {rareUser.username}</div>
-            
-            <div className="rareUser__bio">Bio:{rareUser.bio}</div>
-            
-            
-            <div className="rareUser__treatment">Date Created {rareUser.created_on}</div>
+        <>
+            <section className="rare_users" key={rare_users.id}>
 
-            {rareUser === rareUser.id ? <button onClick={() => {
-                handleRelease()
-            }}>Remove User</button> : <div></div>}
+                <div className="rare_users__imageURL"><img src={rare_users.profile_image_url} alt="Users Picture" />
+                </div>
 
-            {rareUser === rareUser.id ?
+                <h3 className="rare_users__first_name">{rare_users.first_name}</h3>
+
+                <h3 className="rare_users__last_name">{rare_users.last_name}</h3>
+                <div className="rare_users__location">Username: {rare_users.username}</div>
+
+                <div className="rare_users__bio">Bio:{rare_users.bio}</div>
+
+
+                <div className="rare_users__treatment">Date Created {rare_users.created_on}</div>
+
+                <button onClick={() => handleUserRelease(rare_users.id).then(() => history.push("/rare_users"))} >Release User</button>
+
                 <button onClick={() => {
-                    history.push(`/rareUsers/edit/${rareUser.id}`)
-                }}>  Edit User </button> : <div></div>}
-
-        </section>
+                    history.push(`/rare_users/edit/${rare_users.id}`)
+                }}>Edit</button>
+            </section>
+        </>
     )
 }

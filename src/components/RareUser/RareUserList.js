@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom'
 import "./RareUser.css"
 
 export const RareUserList = () => {
-    const { getRareUsers, rareUsers, searchTerms } = useContext(RareUserContext)
+    const { getRareUsers, rare_users, searchTerms } = useContext(RareUserContext)
 
     const [filteredRareUsers, setFiltered] = useState([])
 
@@ -17,34 +17,34 @@ export const RareUserList = () => {
 
     useEffect(() => {
         if (searchTerms !== "") {
-            const subset = rareUsers.filter(rareUser => rareUser.first_name.toLowerCase().includes(searchTerms.toLowerCase())
+            const subset = rare_users.filter(rareUsers => rareUsers.first_name.toLowerCase().includes(searchTerms.toLowerCase())
             )
             setFiltered(subset)
         } else {
-            setFiltered(rareUsers)
+            setFiltered(rare_users)
         }
-    }, [searchTerms, rareUsers])
+    }, [searchTerms, rare_users])
 
-    useEffect(() => {
-        setFiltered(rareUsers)
-    }, [rareUsers])
+    // useEffect(() => {
+    //     setFiltered(rareUsers)
+    // }, [rareUsers])
 
     return (
         <div style={{ marginTop: "2rem" }}>
             <>
             <h2>Users</h2>
                 <div className="vertical-center">
-                    <button onClick={() => history.push("/rareUsers/create")
+                    <button onClick={() => history.push("/rare_users/create")
                     }>
                         Add New User
                     </button>
                 </div>
-                {/* <section className="rareUsers">
+                <section className="rare_users">
                     {
-                        filteredRareUsers.map(rareUser => <RareUserDetail key={rareUser.id} rareUser={rareUser} />
+                        filteredRareUsers.map(rareUsers => <RareUserDetail key ={rareUsers.id} rareUsers ={rareUsers} />
                         )
                     }
-                </section> */}
+                </section>
             </>
         </div>
     )

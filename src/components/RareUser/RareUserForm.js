@@ -14,7 +14,7 @@ export const RareUserForm = () => {
 
 
   //for edit, hold on to state of rareUser in this view
-  const [rareUser, setRareUsers] = useState({})
+  const [rare_users, setRareUsers] = useState({})
   //wait for data before button is active
   const [isLoading, setIsLoading] = useState(true)
 
@@ -29,7 +29,7 @@ export const RareUserForm = () => {
   const handleControlledInputChange = (event) => {
     /* When changing a state object or array,
     always create a copy, make changes, and then set state.*/
-    const newRareUser = { ...rareUser }
+    const newRareUser = { ...rare_users }
     /* rareUser is an object with properties.
     Set the property to the new value
     using object bracket notation. */
@@ -40,7 +40,7 @@ export const RareUserForm = () => {
 
 
   const handleSaveRareUser = () => {
-    if (rareUser.rareUserId === 0) {
+    if (rare_users.rareUserId === 0) {
       window.alert("Please Enter a New User")
     } else {
       //disable the button - no extra clicks
@@ -48,34 +48,34 @@ export const RareUserForm = () => {
       if (rareUserId) {
         //PUT - update
         updateRareUser({
-          id: rareUser.id,
-          bio: rareUser.bio,
-          profile_image_url: rareUser.profile_image_url,
-          created_on: rareUser.created_on,
-          active: rareUser.active,
-          first_name: rareUser.first_name,
-          last_name: rareUser.last_name,
-          email: rareUser.email,
-          username: rareUser.username,
-          password: rareUser.password,
-          is_admin: rareUser.is_admin,
+          id: rare_users.id,
+          bio: rare_users.bio,
+          profile_image_url: rare_users.profile_image_url,
+          created_on: rare_users.created_on,
+          active: rare_users.active,
+          first_name: rare_users.first_name,
+          last_name: rare_users.last_name,
+          email: rare_users.email,
+          username: rare_users.username,
+          password: rare_users.password,
+          is_admin: rare_users.is_admin,
 
         })
-          .then(() => history.push(`/rareUsers/detail/${rareUser.id}`))
+          .then(() => history.push(`/rare_users/detail/${rare_users.id}`))
       } else {
         //POST - add
         addRareUser({          
-          first_name: rareUser.first_name,
-          last_name: rareUser.last_name,
-          email: rareUser.email,
-          bio: rareUser.bio,          
-          username: rareUser.username,
-          password: rareUser.password,
-          profile_image_url: rareUser.profile_image_url,
-          created_on: rareUser.created_on,
-          active: rareUser.active,
+          first_name: rare_users.first_name,
+          last_name: rare_users.last_name,
+          email: rare_users.email,
+          bio: rare_users.bio,          
+          username: rare_users.username,
+          password: rare_users.password,
+          profile_image_url: rare_users.profile_image_url,
+          created_on: rare_users.created_on,
+          active: rare_users.active,
         })
-          .then(() => history.push("/rareUsers"))
+          .then(() => history.push("/rare_users"))
       }
     }
   }
@@ -85,8 +85,8 @@ export const RareUserForm = () => {
     getRareUsers().then(() => {
       if (rareUserId) {
         getRareUserById(rareUserId)
-          .then(rareUser => {
-            setRareUsers(rareUser)
+          .then(rare_users => {
+            setRareUsers(rare_users)
             setIsLoading(false)
           })
       } else {
@@ -96,40 +96,40 @@ export const RareUserForm = () => {
   }, [])
   return (
 
-    <form className="RareUserForm">
-      <h2 className="RareUserForm__title"> User </h2>
+    <form className="Rare_User_Form">
+      <h2 className="Rare_User_Form__title"> User </h2>
       <fieldset>
         <div className="form-group">
           <label htmlFor="username"> Choose a Username:  </label>
-          <input type="text" id="username" required autoFocus className="form-control" placeholder="Username" value={rareUser.username} onChange={handleControlledInputChange} />
+          <input type="text" id="username" required autoFocus className="form-control" placeholder="Username" value={rare_users.username} onChange={handleControlledInputChange} />
         </div>
       </fieldset>
 
       <fieldset>
         <div className="form-group">
           <label htmlFor="first_name"> User's First Name:  </label>
-          <input type="text" id="first_name" required autoFocus className="form-control" placeholder="Enter User's First Name" value={rareUser.first_name} onChange={handleControlledInputChange} />
+          <input type="text" id="first_name" required autoFocus className="form-control" placeholder="Enter User's First Name" value={rare_users.first_name} onChange={handleControlledInputChange} />
         </div>
       </fieldset>
       
       <fieldset>
         <div className="form-group">
           <label htmlFor="last_name"> User's Last Name:  </label>
-          <input type="text" id="last_name" required autoFocus className="form-control" placeholder="Enter User's Last Name" value={rareUser.last_name} onChange={handleControlledInputChange} />
+          <input type="text" id="last_name" required autoFocus className="form-control" placeholder="Enter User's Last Name" value={rare_users.last_name} onChange={handleControlledInputChange} />
         </div>
       </fieldset>
 
       <fieldset>
             <div className="form-group-email">
             <label htmlFor="email">Add an Email:  </label>
-            <input type="text" id="email" required autoFocus className="form-control" placeholder="Enter an Email " value={rareUser.email} onChange={handleControlledInputChange} />
+            <input type="text" id="email" required autoFocus className="form-control" placeholder="Enter an Email " value={rare_users.email} onChange={handleControlledInputChange} />
           </div>
         </fieldset>
 
       <fieldset>
         <div className="form-group-bio">
-          <label htmlFor="bio"> Write Something About Yourself.  </label>
-          <input type="text" id="bio" required autoFocus className="form-control" placeholder="Enter Bio Info" value={rareUser.bio} onChange={handleControlledInputChange} />
+          <label htmlFor="bio"> Write Something Interesting About Yourself:  </label>
+          <input type="text" id="bio" required autoFocus className="form-control" placeholder="Enter Bio Info" value={rare_users.bio} onChange={handleControlledInputChange} />
         </div>
       </fieldset>
 
@@ -137,7 +137,7 @@ export const RareUserForm = () => {
         <div className="form-group-img">
           <label htmlFor="text">Add an Image:  </label>
           <input type="text" id="profile_image_url"
-            name="profile_image_url" required autoFocus className="form-control" placeholder="Enter a Photo " value={rareUser.profile_image_url} onChange={handleControlledInputChange} />
+            name="profile_image_url" required autoFocus className="form-control" placeholder="Enter a Photo " value={rare_users.profile_image_url} onChange={handleControlledInputChange} />
         </div>
       </fieldset>
 

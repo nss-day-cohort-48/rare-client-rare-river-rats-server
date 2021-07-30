@@ -47,16 +47,16 @@ export const ApplicationViews = () => {
         </CategoryProvider>
       </PostProvider>
       <RareUserProvider>
-        <Route exact path="/rareUsers/create">
+        <Route exact path="/rare_users/create">
           <RareUserForm />
         </Route>
-        <Route exact path="/rareUsers/detail/:rareUserId(\d+)">
+        <Route exact path="/rare_users/detail/:rareUserId(\d+)">
           <RareUserDetail />
         </Route>
-        <Route exact path="/rareUsers/edit/:rareUserId(\d+)">
+        <Route exact path="/rare_users/edit/:rareUserId(\d+)">
           <RareUserForm />
         </Route>
-        <Route exact path="/rareUsers">
+        <Route exact path="/rare_users">
           <RareUserSearch />
           <RareUserList />
         </Route>

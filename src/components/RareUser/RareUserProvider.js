@@ -7,7 +7,7 @@ export const RareUserContext = createContext()
 export const RareUserProvider = (props) => {
 
     const [rare_users, setRare_Users] = useState([])
-    const [searchTerms, setTerms] = useState("")
+    const [searchTerms, setSearchTerms] = useState("")
 
     const getRareUsers = () => {
         return fetch("http://localhost:8088/rare_users")
@@ -51,7 +51,7 @@ export const RareUserProvider = (props) => {
 
     return (
         <RareUserContext.Provider value={{
-            rare_users, searchTerms, setTerms, getRareUsers, addRareUser, releaseRareUser, getRareUserById, updateRareUser
+            rare_users, searchTerms, setSearchTerms, getRareUsers, addRareUser, releaseRareUser, getRareUserById, updateRareUser
         }}>
             {props.children}
         </RareUserContext.Provider>
