@@ -19,7 +19,7 @@ export const NavBar = () => {
                 <Link className="navbar__link" to="/posts">My Posts</Link>
             </li>
             <li className="navbar__item">
-                <Link className="navbar__link" to="/catagories">Category Manager</Link>
+                <Link className="navbar__link" to="/categories">Category Manager</Link>
             </li>
             <li className="navbar__item">
                 <Link className="navbar__link" to="/tags">Tag Manager</Link>
