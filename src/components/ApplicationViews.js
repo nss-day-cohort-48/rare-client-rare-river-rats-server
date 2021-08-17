@@ -2,7 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 import { PostProvider } from "./posts/PostProvider";
 import { PostList } from "./posts/PostList";
-// import { ProfileProvider } from "./auth/AuthProvider";
+// import { ProfileProvider } from "./auth/ProfileProvider";
 import { RareUserProvider } from "./RareUser/RareUserProvider";
 import { RareUserList } from "./RareUser/RareUserList";
 import { RareUserDetail } from "./RareUser/RareUserDetail"
