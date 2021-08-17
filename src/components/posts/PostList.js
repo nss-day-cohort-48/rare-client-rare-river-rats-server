@@ -4,7 +4,7 @@ import Post from "./Post";
 import "./Posts.css";
 
 export const PostList = ({ history }) => {
-  const { getPosts, posts } = useContext(PostContext);
+  const { posts, getPosts } = useContext(PostContext);
 
   // const [filteredposts, setFiltered] = useState([])
 

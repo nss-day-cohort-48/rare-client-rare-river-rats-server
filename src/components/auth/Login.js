@@ -3,10 +3,10 @@ import { Link, useHistory } from "react-router-dom";
 import "./Auth.css";
 
 export const Login = (props) => {
+  const history = useHistory();
   const email = React.createRef();
   const password = React.createRef();
   const invalidDialog = React.createRef();
-  const history = useHistory();
 
   const handleLogin = (e) => {
     e.preventDefault();
