@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom"
 import "./Auth.css"
 
 
-export const Login = props => {
+export const Login = () =>  {
     const email = React.createRef()
     const password = React.createRef()
     const invalidDialog = React.createRef()
@@ -27,7 +27,7 @@ export const Login = props => {
             .then(res => {
                 if ("valid" in res && res.valid && "token" in res) {
                     localStorage.setItem( "rare_token", res.token )
-                    props.history.push("/")
+                    history.push("/")
                 }
                 else {
                     invalidDialog.current.showModal()
