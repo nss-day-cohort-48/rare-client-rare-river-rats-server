@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom"
 import "./Auth.css"
 
 
-export const Login = () =>  {
+export const Login = () => {
     const email = React.createRef()
     const password = React.createRef()
     const invalidDialog = React.createRef()
