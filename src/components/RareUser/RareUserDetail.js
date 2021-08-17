@@ -33,6 +33,7 @@ export const RareUserDetail = () => {
 
     return (
         <>
+        
             <section className="rare_users" key={rare_users.id}>
 
                 <div className="rare_users__imageURL"><img src={rare_users.profile_image_url} alt="Users Picture" />
@@ -46,7 +47,7 @@ export const RareUserDetail = () => {
                 <div className="rare_users__bio">Bio:{rare_users.bio}</div>
 
 
-                <div className="rare_users__treatment">Date Created {rare_users.created_on}</div>
+                <div className="rare_users__created">Date Created {rare_users.created_on}</div>
 
                 <button onClick={() => handleUserRelease(rare_users.id).then(() => history.push("/rare_users"))} >Release User</button>
 

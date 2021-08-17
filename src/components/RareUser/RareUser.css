@@ -23,6 +23,13 @@
     color: white;
     font-size: 1rem;    
   }
+  
+  .vertical-center {
+    text-align: center;
+    font-family: "Comfortaa", Arial, sans-serif;
+    font-size: 4px;
+    line-height: 1.
+  }
 
   .inputSearch  {
     font-family: "Comfortaa", Arial, sans-serif;

@@ -10,13 +10,13 @@ export const RareUserProvider = (props) => {
     const [searchTerms, setSearchTerms] = useState("")
 
     const getRareUsers = () => {
-        return fetch("http://localhost:8088/rare_users")
+        return fetch("http://localhost:8000/rare_users")
             .then(res => res.json())
             .then(setRare_Users)
     }
 
     const addRareUser = rareUserObj => {
-        return fetch("http://localhost:8088/rare_users", {
+        return fetch("http://localhost:8000/rare_users", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -27,12 +27,12 @@ export const RareUserProvider = (props) => {
     }    
 
     const getRareUserById = (id) => {
-        return fetch(`http://localhost:8088/rare_users/${id}`)
+        return fetch(`http://localhost:8000/rare_users/${id}`)
             .then(res => res.json())
     }
 
     const updateRareUser = rare_user => {
-        return fetch(`http://localhost:8088/rare_users/${rare_user.id}`, {
+        return fetch(`http://localhost:8000/rare_users/${rare_user.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -43,7 +43,7 @@ export const RareUserProvider = (props) => {
     }
     
     const releaseRareUser = rareUserId => {
-        return fetch(`http://localhost:8088/rare_users/${rareUserId}`, {
+        return fetch(`http://localhost:8000/rare_users/${rareUserId}`, {
             method: "DELETE"
         })
             .then(getRareUserById)
