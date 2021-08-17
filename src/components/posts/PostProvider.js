@@ -6,13 +6,13 @@ export const PostProvider = (props) => {
   const [posts, setPosts] = useState([]);
 
   const getPosts = () => {
-    return fetch("http://localhost:8088/posts")
+    return fetch("http://localhost:8000/posts")
       .then((res) => res.json())
       .then(setPosts);
   };
 
   const getPostById = (id) => {
-    return fetch(`http://localhost:8088/posts/${id}?_expand=Rare_Users`).then(
+    return fetch(`http://localhost:8000/posts/${id}?_expand=Rare_Users`).then(
       (res) => res.json()
     );
   };
@@ -27,7 +27,7 @@ export const PostProvider = (props) => {
   };
 
   const updatePost = (post) => {
-    return fetch(`http://localhost:8088/posts/${post.id}`, {
+    return fetch(`http://localhost:8000/posts/${post.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +37,7 @@ export const PostProvider = (props) => {
   };
 
   const deletePost = (postId) => {
-    return fetch(`http://localhost:8088/posts/${postId}`, {
+    return fetch(`http://localhost:8000/posts/${postId}`, {
       method: "DELETE",
     }).then(getPosts);
   };

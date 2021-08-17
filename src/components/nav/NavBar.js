@@ -31,7 +31,7 @@ export const NavBar = () => {
                 <Link className="navbar__link" to="/login"
                     onClick={ //allows the user to logout by removing the current user from the local storage
                         (event) => {
-                            localStorage.removeItem("rare_user_id")
+                            localStorage.removeItem("rare_token")
                         }
                     }
                 >Logout</Link>
