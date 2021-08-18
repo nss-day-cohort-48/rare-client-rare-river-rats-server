@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import { TagContext } from "./TagProvider"
 import "./Tag.css"
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 export const TagForm = () => {
-  const { addTag } = useContext(TagContext)
+  const { addTag, updateTag, getTagById } = useContext(TagContext)
   
 
   /*
@@ -12,9 +12,11 @@ export const TagForm = () => {
   Define the initial state of the form inputs with useState()
   */
 
-  const [tag, setTag] = useState({
-    label: ""
-  });
+  const [tag, setTag] = useState({});
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  const { tagId } =useParams();
 
   const history = useHistory();
 
@@ -39,21 +41,40 @@ export const TagForm = () => {
   }
 
   const handleClickSaveTag = (event) => {
-    event.preventDefault() //Prevents the browser from submitting the form
+    
 
     if (tag.label === "") {
       window.alert("Please select a label")
     } else {
+      setIsLoading(true);
       //Invoke addTag passing the new tag object as an argument
       //Once complete, change the url and display the tag list
-
-      const newTag = {
-        label: tag.label,
-      }
-      addTag(newTag)
+      if (tagId){
+        updateTag({
+          id: tag.id,
+          label: tag.label
+        })
         .then(() => history.push("/tags"))
+      }else {
+        addTag({
+          label: tag.label
+        })
+        .then(() => history.push("/tags"))
+      }      
     }
   }
+
+  useEffect(() => {
+    if (tagId){
+      getTagById(tagId)
+      .then(tag => {
+        setTag(tag)
+        setIsLoading(false)
+      })
+    } else {
+      setIsLoading(false)
+    }
+  }, [])
 
   return (
     <form className="tagForm">
@@ -64,8 +85,11 @@ export const TagForm = () => {
           <input type="text" id="label" required autoFocus className="form-control" placeholder="Tag label" value={tag.label} onChange={handleControlledInputChange} />
         </div>
       </fieldset>
-      <button className="btn btn-primary" onClick={handleClickSaveTag}>
-        Save Tag
+      <button className="btn btn-primary" disabled={isLoading} onClick={event => {
+        event.preventDefault()
+        handleClickSaveTag()
+      }}>
+        {tagId ? <>Save Tag</> : <>Add Tag</>}
           </button>
     </form>
   )
