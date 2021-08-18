@@ -2,10 +2,11 @@ import React, { useState, useContext, useEffect } from "react";
 import { PostContext } from "./PostProvider";
 import Post from "./Post";
 import "./Posts.css";
+import { useHistory } from "react-router-dom";
 
-export const PostList = ({ history }) => {
+export const PostList = () => {
   const { posts, getPosts } = useContext(PostContext);
-
+  const history = useHistory();
   // const [filteredposts, setFiltered] = useState([])
 
   // Initialization effect hook -> Go get post data
