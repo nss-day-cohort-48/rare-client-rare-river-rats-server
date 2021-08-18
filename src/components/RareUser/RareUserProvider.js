@@ -6,13 +6,13 @@ export const RareUserContext = createContext()
 // This component establishes what data can be used.
 export const RareUserProvider = (props) => {
 
-    const [rare_users, setRare_Users] = useState([])
+    const [rare_users, setRareUsers] = useState([])
     const [searchTerms, setSearchTerms] = useState("")
 
     const getRareUsers = () => {
         return fetch("http://localhost:8000/rare_users")
             .then(res => res.json())
-            .then(setRare_Users)
+            .then(setRareUsers)
     }
 
     const addRareUser = rareUserObj => {

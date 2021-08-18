@@ -25,7 +25,7 @@ export const NavBar = () => {
                 <Link className="navbar__link" to="/tags">Tag Manager</Link>
             </li>
             <li className="navbar__item">
-                <Link className="navbar__link" to="/rare_users">User Manager</Link>
+                <Link className="navbar__link" to="/profiles">User Manager</Link>
             </li>
             <li className="navbar__item">
                 <Link className="navbar__link" to="/login"

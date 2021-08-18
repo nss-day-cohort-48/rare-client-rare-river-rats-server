@@ -2,7 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 import { PostProvider } from "./posts/PostProvider";
 import { PostList } from "./posts/PostList";
-// import { ProfileProvider } from "./auth/ProfileProvider";
+import { ProfileProvider } from "./auth/ProfileProvider";
 import { RareUserProvider } from "./RareUser/RareUserProvider";
 import { RareUserList } from "./RareUser/RareUserList";
 import { RareUserDetail } from "./RareUser/RareUserDetail"
@@ -46,6 +46,7 @@ export const ApplicationViews = () => {
           </TagProvider>
         </CategoryProvider>
       </PostProvider>
+      <ProfileProvider>
       <RareUserProvider>
         <Route exact path="/rare_users/create">
           <RareUserForm />
@@ -60,7 +61,10 @@ export const ApplicationViews = () => {
           <RareUserSearch />
           <RareUserList />
         </Route>
+        <Route exact path="/profiles">          
+        </Route>
       </RareUserProvider>
+      </ProfileProvider>
     </>
   );
 };

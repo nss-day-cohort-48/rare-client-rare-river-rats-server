@@ -16,11 +16,7 @@ export const ProfileProvider = (props) => {
   };
   return (
     <ProfileContext.Provider
-      value={{
-        profile,
-        getProfile,
-      }}
-    >
+      value={{ profile, getProfile }}>
       {props.children}
     </ProfileContext.Provider>
   );
