@@ -12,8 +12,8 @@ export const Category = () => {
   
   const history = useHistory()
 
-  const handleDelete = () => {
-    deleteCategory(category.id)
+  const handleDelete = (categoryId) => {
+    deleteCategory(categoryId)
       .then(() => {
         history.push("/categories")
       })
@@ -46,14 +46,17 @@ export const Category = () => {
           return (
             <div className="category" id={`category--${category.id}`} key={category.id}>
               <div className="category__edit">
-                <button onClick={
-                  () => history.push(`/categories/edit/${category.id}`)
-                }>
+                <button onClick={event => {
+                  event.preventDefault()
+                  history.push(`/categories/edit/${category.id}`)
+                }}>
                   Edit
                 </button>
               </div>
               <div className="category__delete">
-                <button onClick={handleDelete}>
+                <button onClick={event => {
+                  event.preventDefault()
+                  handleDelete(category.id)}}>
                   Delete
                 </button>
               </div>

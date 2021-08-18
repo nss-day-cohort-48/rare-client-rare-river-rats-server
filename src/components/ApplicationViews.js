@@ -41,13 +41,16 @@ export const ApplicationViews = () => {
             <Route exact path="/categories/create">
               <CategoryForm />
             </Route>
-            <Route exact path="categories/edit/:categoryId(\d+)">
+            <Route exact path="/categories/edit/:categoryId(\d+)">
               <CategoryForm />
             </Route>
             <Route exact path="/tags">
               <Tag />
             </Route>
             <Route exact path="/tags/create">
+              <TagForm />
+            </Route>
+            <Route exact path="/tags/edit/:tagId(\d+)">
               <TagForm />
             </Route>
           </TagProvider>
