@@ -1,45 +1,54 @@
-import React, { useState, createContext } from "react"
+import React, { useState, createContext } from "react";
 
 // The context is imported and used by individual components that need data
-export const CategoryContext = createContext()
+export const CategoryContext = createContext();
 
 // This component establishes what data can be used.
 export const CategoryProvider = (props) => {
-    const [categories, setCategories] = useState([])
+  const [categories, setCategories] = useState([]);
 
-    const getCategories = () => {
-        return fetch("http://localhost:8000/categories", {
-            headers: {
-                "Authorization": `Token ${localStorage.getItem("rare_token")}`
-            }
-        })
-        .then(res => res.json())
+  const getCategories = () => {
+    return (
+      fetch("http://localhost:8000/categories", {
+        headers: {
+          Authorization: `Token ${localStorage.getItem("rare_token")}`,
+        },
+      })
+        .then((res) => res.json())
         .then(setCategories)
-    }
-
-    const addCategory = category => {
-        return fetch("http://localhost:8000/categories", {
-            method: "POST",
-            headers: {
-                "Authorization": `Token ${localStorage.getItem("rare_token")}`,
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(category)
+        //returning categories list : wrote this line for PostForm categories
+        .then((res) => {
+          return res;
         })
-        .then(response => response.json())
-    }
+    );
+  };
 
-    /*
+  const addCategory = (category) => {
+    return fetch("http://localhost:8000/categories", {
+      method: "POST",
+      headers: {
+        Authorization: `Token ${localStorage.getItem("rare_token")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(category),
+    }).then((response) => response.json());
+  };
+
+  /*
         You return a context provider which has the
         `categories` state, `getCategories` function,
         and the `addCategory` function as keys. This
         allows any child elements to access them.
     */
-    return (
-        <CategoryContext.Provider value={{
-            categories, getCategories, addCategory
-        }}>
-            {props.children}
-        </CategoryContext.Provider>
-    )
-}
+  return (
+    <CategoryContext.Provider
+      value={{
+        categories,
+        getCategories,
+        addCategory,
+      }}
+    >
+      {props.children}
+    </CategoryContext.Provider>
+  );
+};
