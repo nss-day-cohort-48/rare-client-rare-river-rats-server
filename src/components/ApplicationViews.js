@@ -3,11 +3,12 @@ import { Route } from "react-router-dom";
 import { PostProvider } from "./posts/PostProvider";
 import { PostList } from "./posts/PostList";
 import { ProfileProvider } from "./auth/ProfileProvider";
+import { PostForm } from "./posts/PostForm";
 import { RareUserProvider } from "./RareUser/RareUserProvider";
 import { RareUserList } from "./RareUser/RareUserList";
-import { RareUserDetail } from "./RareUser/RareUserDetail"
-import { RareUserSearch } from "./RareUser/RareUserSearch"
-import { RareUserForm } from "./RareUser/RareUserForm"
+import { RareUserDetail } from "./RareUser/RareUserDetail";
+import { RareUserSearch } from "./RareUser/RareUserSearch";
+import { RareUserForm } from "./RareUser/RareUserForm";
 import { CategoryProvider } from "./categories/CategoryProvider";
 import { Category } from "./categories/Category";
 import { CategoryForm } from "./categories/CategoryForm";
@@ -30,6 +31,9 @@ export const ApplicationViews = () => {
           <TagProvider>
             <Route exact path="/">
               <PostList />
+            </Route>
+            <Route exact path="/posts/create">
+              <PostForm />
             </Route>
             <Route exact path="/categories">
               <Category />

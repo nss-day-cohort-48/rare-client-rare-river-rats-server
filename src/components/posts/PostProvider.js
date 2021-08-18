@@ -8,26 +8,26 @@ export const PostProvider = (props) => {
   const getPosts = () => {
     return fetch("http://localhost:8000/posts", {
       headers: {
-        "Authorization": `Token ${localStorage.getItem("rare_token")}`
-      }
+        Authorization: `Token ${localStorage.getItem("rare_token")}`,
+      },
     })
       .then((res) => res.json())
       .then(setPosts);
   };
 
   const getPostById = (id) => {
-    return fetch(`http://localhost:8000/posts/${id}`, {
+    return fetch(`http://localhost:8000/posts/${id}?_expand=Rare_Users`, {
       headers: {
         Authorization: `Token ${localStorage.getItem("rare_token")}`,
       },
-    })
-      .then((response) => response.json())
+    }).then((res) => res.json());
   };
 
   const addPost = (post) => {
     return fetch("http://localhost:8000/posts", {
       method: "POST",
       headers: {
+        Authorization: `Token ${localStorage.getItem("rare_token")}`,
         "Content-Type": "application/json",
         "Authorization": `Token ${localStorage.getItem("rare_token")}`
       },
