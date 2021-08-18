@@ -6,20 +6,27 @@ export const PostProvider = (props) => {
   const [posts, setPosts] = useState([]);
 
   const getPosts = () => {
-    return fetch("http://localhost:8000/posts")
+    return fetch("http://localhost:8000/posts", {
+      headers: {
+        Authorization: `Token ${localStorage.getItem("rare_token")}`,
+      },
+    })
       .then((res) => res.json())
       .then(setPosts);
   };
 
   const getPostById = (id) => {
-    return fetch(`http://localhost:8000/posts/${id}?_expand=Rare_Users`).then(
-      (res) => res.json()
-    );
+    return fetch(`http://localhost:8000/posts/${id}?_expand=Rare_Users`, {
+      headers: {
+        Authorization: `Token ${localStorage.getItem("rare_token")}`,
+      },
+    }).then((res) => res.json());
   };
   const addPost = (post) => {
     return fetch("http://localhost:8000/posts", {
       method: "POST",
       headers: {
+        Authorization: `Token ${localStorage.getItem("rare_token")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(post),
