@@ -25,8 +25,8 @@ export const NavBar = () => {
                 <Link className="navbar__link" to="/tags">Tag Manager</Link>
             </li>
             <li className="navbar__item">
-                <Link className="navbar__link" to="/profiles">User Manager</Link>
-            </li>
+                    <Link className="nav-link" to="/profiles">Profiles</Link>
+                </li>
             <li className="navbar__item">
                 <Link className="navbar__link" to="/login"
                     onClick={ //allows the user to logout by removing the current user from the local storage
