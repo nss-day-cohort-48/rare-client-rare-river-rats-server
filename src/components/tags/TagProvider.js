@@ -7,6 +7,15 @@ export const TagContext = createContext()
 export const TagProvider = (props) => {
     const [tags, setTags] = useState([])
 
+    const getTagById = (id) => {
+        return fetch(`http://localhost:8000/tags/${id}`, {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("rare_token")}`
+            }
+        })
+        .then(res => res.json())
+    }
+
     const getTags = () => {
         return fetch("http://localhost:8000/tags", {
             headers: {
@@ -29,6 +38,28 @@ export const TagProvider = (props) => {
         .then(response => response.json())
     }
 
+    const updateTag = tagObj => {
+        return fetch(`http://localhost:8000/tags/${tagObj.id}`, {
+            method: "PUT",
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("rare_token")}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(tagObj)
+        })
+        .then(getTags)
+    }
+
+    const deleteTag = tagId => {
+        return fetch(`http://localhost:8000/tags/${tagId}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("rare_token")}`
+            },
+        })
+        .then(getTags)
+    }
+
     /*
         You return a context provider which has the
         `tags` state, `getTags` function,
@@ -37,7 +68,7 @@ export const TagProvider = (props) => {
     */
     return (
         <TagContext.Provider value={{
-            tags, getTags, addTag
+            tags, getTags, addTag, updateTag, deleteTag, getTagById
         }}>
             {props.children}
         </TagContext.Provider>
