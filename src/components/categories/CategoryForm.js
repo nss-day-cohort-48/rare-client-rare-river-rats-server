@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import { CategoryContext } from "./CategoryProvider"
 import "./Category.css"
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 export const CategoryForm = () => {
-  const { addCategory } = useContext(CategoryContext)
+  const { addCategory, updateCategory, getCategoryById } = useContext(CategoryContext)
   
 
   /*
@@ -12,9 +12,11 @@ export const CategoryForm = () => {
   Define the initial state of the form inputs with useState()
   */
 
-  const [category, setCategory] = useState({
-    label: ""
-  });
+  const [category, setCategory] = useState({});
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  const { categoryId } =useParams();
 
   const history = useHistory();
 
@@ -39,21 +41,40 @@ export const CategoryForm = () => {
   }
 
   const handleClickSaveCategory = (event) => {
-    event.preventDefault() //Prevents the browser from submitting the form
+    
 
     if (category.label === "") {
       window.alert("Please select a label")
     } else {
+      setIsLoading(true);
       //Invoke addCategory passing the new category object as an argument
       //Once complete, change the url and display the category list
-
-      const newCategory = {
-        label: category.label,
-      }
-      addCategory(newCategory)
+      if (categoryId){
+        updateCategory({
+          id: category.id,
+          label: category.label
+        })
         .then(() => history.push("/categories"))
+      }else {
+        addCategory({
+          label: category.label
+        })
+        .then(() => history.push("/categories"))
+      }      
     }
   }
+
+  useEffect(() => {
+    if (categoryId){
+      getCategoryById(categoryId)
+      .then(category => {
+        setCategory(category)
+        setIsLoading(false)
+      })
+    } else {
+      setIsLoading(false)
+    }
+  }, [])
 
   return (
     <form className="categoryForm">
@@ -64,8 +85,11 @@ export const CategoryForm = () => {
           <input type="text" id="label" required autoFocus className="form-control" placeholder="Category label" value={category.label} onChange={handleControlledInputChange} />
         </div>
       </fieldset>
-      <button className="btn btn-primary" onClick={handleClickSaveCategory}>
-        Save Category
+      <button className="btn btn-primary" disabled={isLoading} onClick={event => {
+        event.preventDefault()
+        handleClickSaveCategory()
+      }}>
+        {categoryId ? <>Save Category</> : <>Add Category</>}
           </button>
     </form>
   )

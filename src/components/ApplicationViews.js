@@ -37,6 +37,9 @@ export const ApplicationViews = () => {
             <Route exact path="/categories/create">
               <CategoryForm />
             </Route>
+            <Route exact path="categories/edit/:categoryId(\d+)">
+              <CategoryForm />
+            </Route>
             <Route exact path="/tags">
               <Tag />
             </Route>
