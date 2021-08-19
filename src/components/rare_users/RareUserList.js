@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom'
 import "./RareUser.css"
 
 export const RareUserList = () => {
-    const { getRareUsers, rare_users, searchTerms } = useContext(RareUserContext)
+    const {  rare_users, getRareUsers, searchTerms } = useContext(RareUserContext)
 
     const [filteredRareUsers, setFiltered] = useState([])
 
@@ -17,7 +17,7 @@ export const RareUserList = () => {
 
     useEffect(() => {
         if (searchTerms !== "") {
-            const subset = rare_users.filter(rareUsers => rareUsers.first_name.toLowerCase().includes(searchTerms.toLowerCase())
+            const subset = rare_users.filter(rareUsers => rareUsers.user.first_name.toLowerCase().includes(searchTerms.toLowerCase())
             )
             setFiltered(subset)
         } else {
@@ -34,14 +34,14 @@ export const RareUserList = () => {
             <>
             <h2>Users</h2>
                 <div className="vertical-center">
-                    <button onClick={() => history.push("/rare_users/create")
+                    <button onClick={() => history.push("/rareusers/create")
                     }>
                         Add New User
                     </button>
                 </div>
                 <section className="rare_users">
                     {
-                        filteredRareUsers.map(rareUsers => <RareUserDetail key ={rareUsers.id} rareUsers ={rareUsers} />
+                        filteredRareUsers.map(rareUsers => <RareUserDetail key ={rareUsers.id} rareUsers={rareUsers.user.first_name} />
                         )
                     }
                 </section>

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { PostContext } from "./PostProvider";
-import { RareUserContext } from "../RareUser/RareUserProvider";
+import { RareUserContext } from "../rare_users/RareUserProvider";
 import "./Posts.css";
 import { useHistory } from "react-router-dom";
 

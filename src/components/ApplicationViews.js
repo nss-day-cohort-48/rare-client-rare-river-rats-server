@@ -5,11 +5,11 @@ import { PostList } from "./posts/PostList";
 import { ProfileProvider } from "./auth/ProfileProvider";
 import { Profile } from "./auth/Profile.js"
 import { PostForm } from "./posts/PostForm";
-import { RareUserProvider } from "./RareUser/RareUserProvider";
-import { RareUserList } from "./RareUser/RareUserList";
-import { RareUserDetail } from "./RareUser/RareUserDetail";
-import { RareUserSearch } from "./RareUser/RareUserSearch";
-import { RareUserForm } from "./RareUser/RareUserForm";
+import { RareUserProvider } from "./rare_users/RareUserProvider";
+import { RareUserList } from "./rare_users/RareUserList";
+import { RareUserDetail } from "./rare_users/RareUserDetail";
+import { RareUserSearch } from "./rare_users/RareUserSearch";
+import { RareUserForm } from "./rare_users/RareUserForm";
 import { CategoryProvider } from "./categories/CategoryProvider";
 import { Category } from "./categories/Category";
 import { CategoryForm } from "./categories/CategoryForm";
@@ -73,11 +73,17 @@ export const ApplicationViews = () => {
           <RareUserList />
         </Route>
       </RareUserProvider>
+
+      <RareUserProvider>
       <ProfileProvider>
                 <Route exact path="/profiles">
                     <Profile />
                 </Route>
+                <Route exact path="/RareUser/:rareUserId(\d+)">
+									<RareUserDetail />
+                  </Route>
             </ProfileProvider>
+            </RareUserProvider>
       
     </>
   );

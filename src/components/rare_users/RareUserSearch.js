@@ -18,4 +18,5 @@ export const RareUserSearch = () => {
     </>
   )
 }
+
 // this component's sole responsibility is to capture the text from the user. As the user types, you must immediately update the searchTerms state variable in the parent component.
