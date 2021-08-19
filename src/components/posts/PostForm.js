@@ -1,11 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { PostContext } from "./PostProvider";
-import { RareUserContext } from "../rare_users/RareUserProvider";
 import "./Posts.css";
+// import { RareUserContext } from "../rare_users/RareUserProvider";
+import { CategoryContext } from "../categories/CategoryProvider";
 import { useHistory } from "react-router-dom";
 
 export const PostForm = () => {
+  //  CONTEXT -----------------------------------------------------------------------------------------------------
   const { addPost } = useContext(PostContext);
+  const { categories, getCategories } = useContext(CategoryContext);
+  // STATE --------------------------------------------------------------------------------------------------------
   const [post, setPost] = useState({
     category_id: "",
     title: "",
@@ -13,19 +17,37 @@ export const PostForm = () => {
     image_url: "",
     content: "",
   });
+  //   const [categories, setCategories] = useState([]);
+  //   const { getRareUserById } = useContext(RareUserContext);
+  // --------------------------------------------------------------------------------------------------------------
   const history = useHistory();
 
-  //function handling publication date
+  //   const categories = [];
+  // USE EFFECT ---------------------------------------------------------------------------------------------------
+  useEffect(async () => {
+    getCategories();
+  }, []);
+  console.log("useEffect done");
+  // --------------------------------------------------------------------------------------------------------------
+
+  // function handling publication date
+  // --------------------------------------------------------------------------------------------------------------
   //   const getToday = (post) => {
   //     const today = new Date();
   //     return post.publication_date.getDate() === today.getDate && post.publication_date.getMonth() && post.publication_date.getFullYear()
   //   }
+  // --------------------------------------------------------------------------------------------------------------
+
+  // HANDLE CONTROLLED INPUT CHANGE - used in Form to save the user's input into the newPost's fields
+  // --------------------------------------------------------------------------------------------------------------
   const handleControlledInputChange = (event) => {
     const newPost = { ...post };
     newPost[event.target.id] = event.target.value;
     setPost(newPost);
   };
-
+  // --------------------------------------------------------------------------------------------------------------
+  // HANDLE CLICK SAVE POST - used in Form to add the newPost to the posts list and redirect user to PostList
+  // --------------------------------------------------------------------------------------------------------------
   const handleClickSavePost = (event) => {
     event.preventDefault();
     if (post.title === "") {
@@ -40,13 +62,38 @@ export const PostForm = () => {
         image_url: post.image_url,
         content: post.content,
       };
-      addPost(newPost).then(() => history.push("/categories"));
+      addPost(newPost).then(() => history.push("/"));
     }
   };
+  // -------------------------------------------------------------------------------------------------------------
 
+  // FORM --------------------------------------------------------------------------------------------------------
   return (
     <form className="postForm" id="postForm">
       <h2 className="postForm__header">New Post</h2>
+      <fieldset>
+        <div className="form-group">
+          <label htmlFor="category_id">
+            Pick a Category for Your New Post:
+          </label>
+          <select htmlFor="">
+            {categories.map((category) => {
+              return (
+                <option
+                  className="postForm__categories"
+                  id={category.id}
+                  key={category.label}
+                  onClick={() => {
+                    handleControlledInputChange(category.id);
+                  }}
+                >
+                  {category.label}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+      </fieldset>
       <fieldset>
         <div className="form-group">
           <label htmlFor="title">Post Title:</label>
@@ -98,3 +145,4 @@ export const PostForm = () => {
     </form>
   );
 };
+// ----------------------------------------------------------------------------------------------------------------
