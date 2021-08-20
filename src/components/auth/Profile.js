@@ -20,13 +20,13 @@ export const Profile = () => {
 
                     <img src={profile.profile_image_url} alt="ProfilePic" />
 
-                    <div className="profile__bio">Bio:{profile.bio}</div>
+                    <div className="profile__bio">Bio:  {profile.bio}</div>
 
-                    <div className="profile__username">Username: {profile.username}</div>
-                    <div>Email: {profile.email}</div>
+                    <div className="profile__username">Username: {profile.user.username}</div>
+                    <div>Email: {profile.user.email}</div>
 
                     <div>Profile Type: {
-                        profile.is_staff ? "Admin" : "Rare_profile"
+                        profile.is_staff
                     }
                     </div>
 
