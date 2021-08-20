@@ -3,7 +3,6 @@ import { Route } from "react-router-dom";
 import { PostProvider } from "./posts/PostProvider";
 import { PostList } from "./posts/PostList";
 import { PostForm } from "./posts/PostForm";
-// import { ProfileProvider } from "./auth/ProfileProvider";
 import { RareUserProvider } from "./RareUser/RareUserProvider";
 import { RareUserList } from "./RareUser/RareUserList";
 import { RareUserDetail } from "./RareUser/RareUserDetail";
@@ -16,6 +15,8 @@ import { TagProvider } from "./tags/TagProvider";
 import { Tag } from "./tags/Tag";
 import { TagForm } from "./tags/TagForm";
 // import { CommentProvider } from "./comments/CommentProvider";
+import { ProfileProvider } from "./auth/ProfileProvider";
+import { Profile } from "./auth/Profile.js"
 
 export const ApplicationViews = () => {
   return (
@@ -25,7 +26,7 @@ export const ApplicationViews = () => {
           margin: "5rem 2rem",
           lineHeight: "1.75rem",
         }}
-      ></main>
+      >
       <PostProvider>
         <CategoryProvider>
           <TagProvider>
@@ -71,6 +72,13 @@ export const ApplicationViews = () => {
           <RareUserList />
         </Route>
       </RareUserProvider>
+
+      <ProfileProvider>
+                <Route exact path="/profile">
+                    <Profile />
+                </Route>
+            </ProfileProvider>
+      </main>
     </>
   );
 };

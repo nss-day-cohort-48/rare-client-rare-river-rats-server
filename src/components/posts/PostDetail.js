@@ -5,7 +5,7 @@ import "./Posts.css";
 export const PostDetails = (props) => {
   const { deletePost, getPostById } = useContext(PostContext);
 
-  const [post, setPost] = useState({ location: {}, customer: {} });
+  const [post, setPost] = useState();
 
   useEffect(() => {
     const postId = parseInt(props.match.params.postId);

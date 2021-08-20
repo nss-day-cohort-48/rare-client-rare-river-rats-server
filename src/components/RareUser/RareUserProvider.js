@@ -9,7 +9,11 @@ export const RareUserProvider = (props) => {
   const [searchTerms, setSearchTerms] = useState("");
 
   const getRareUsers = () => {
-    return fetch("http://localhost:8000/rare_users")
+    return fetch("http://localhost:8000/rare_users", {
+      headers:{
+          "Authorization": `Token ${localStorage.getItem("rare_token")}`
+      }
+  })
       .then((res) => res.json())
       .then(setRare_Users);
   };
@@ -17,8 +21,9 @@ export const RareUserProvider = (props) => {
   const addRareUser = (rareUserObj) => {
     return fetch("http://localhost:8000/rare_users", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+      headers:{
+          "Content-Type": "application/json",
+          "Authorization": `Token ${localStorage.getItem("rare_token")}`
       },
       body: JSON.stringify(rareUserObj),
     }).then(getRareUsers);
@@ -27,7 +32,7 @@ export const RareUserProvider = (props) => {
   const getRareUserById = (id) => {
     return fetch(`http://localhost:8000/rare_users/${id}`, {
       headers: {
-        Authorization: `Token ${localStorage.getItem("rare_token")}`,
+        "Authorization": `Token ${localStorage.getItem("rare_token")}`,
         "Content-Type": "application/json",
       },
     }).then((res) => res.json());
@@ -36,8 +41,9 @@ export const RareUserProvider = (props) => {
   const updateRareUser = (rare_user) => {
     return fetch(`http://localhost:8000/rare_users/${rare_user.id}`, {
       method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
+      headers:{
+          "Content-Type": "application/json",
+          "Authorization": `Token ${localStorage.getItem("lu_token")}`
       },
       body: JSON.stringify(rare_user),
     }).then(getRareUsers);
@@ -46,7 +52,12 @@ export const RareUserProvider = (props) => {
   const releaseRareUser = (rareUserId) => {
     return fetch(`http://localhost:8000/rare_users/${rareUserId}`, {
       method: "DELETE",
-    }).then(getRareUserById);
+      headers:{
+          "Authorization": `Token ${localStorage.getItem("lu_token")}`,
+          "Content-Type": "application/json"
+      }
+  })
+  .then(getRareUserById);
   };
 
   return (

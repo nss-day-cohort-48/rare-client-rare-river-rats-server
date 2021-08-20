@@ -24,9 +24,12 @@ export const NavBar = () => {
             <li className="navbar__item">
                 <Link className="navbar__link" to="/tags">Tag Manager</Link>
             </li>
+            {/* <li className="navbar__item">
+                    <Link className="nav-link" to="/rare_users">Users</Link>
+                </li> */}
             <li className="navbar__item">
-                <Link className="navbar__link" to="/rare_users">User Manager</Link>
-            </li>
+                    <Link className="nav-link" to="/profile">Profiles</Link>
+                </li>
             <li className="navbar__item">
                 <Link className="navbar__link" to="/login"
                     onClick={ //allows the user to logout by removing the current user from the local storage

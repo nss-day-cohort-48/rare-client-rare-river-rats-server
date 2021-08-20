@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react"
-import { RareUserContext } from "../RareUser/RareUserProvider"
+import { RareUserContext } from "./RareUserProvider"
 import { useHistory, useParams } from 'react-router-dom';
 import "./RareUser.css"
 
