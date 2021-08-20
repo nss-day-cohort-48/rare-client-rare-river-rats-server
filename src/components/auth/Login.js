@@ -55,7 +55,7 @@ export const Login = () => {
               type="text"
               id="username"
               className="form-control"
-              placeholder="Username address"
+              placeholder="Username"
               required
               autoFocus
             />

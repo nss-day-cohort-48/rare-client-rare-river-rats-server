@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import { RareUserContext } from "./RareUserProvider"
+import { RareUserContext } from "../RareUser/RareUserProvider"
 import "./RareUser.css"
 
 export const RareUserSearch = () => {

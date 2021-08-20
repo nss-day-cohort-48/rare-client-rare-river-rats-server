@@ -24,11 +24,11 @@ export const NavBar = () => {
             <li className="navbar__item">
                 <Link className="navbar__link" to="/tags">Tag Manager</Link>
             </li>
-            <li className="navbar__item">
+            {/* <li className="navbar__item">
                     <Link className="nav-link" to="/rare_users">Users</Link>
-                </li>
+                </li> */}
             <li className="navbar__item">
-                    <Link className="nav-link" to="/profiles">Profiles</Link>
+                    <Link className="nav-link" to="/profile">Profiles</Link>
                 </li>
             <li className="navbar__item">
                 <Link className="navbar__link" to="/login"

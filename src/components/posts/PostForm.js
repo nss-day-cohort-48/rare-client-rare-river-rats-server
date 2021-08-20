@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { PostContext } from "./PostProvider";
 import "./Posts.css";
-// import { RareUserContext } from "../rare_users/RareUserProvider";
+// import { RareUserContext } from "../RareUser/RareUserProvider";
 import { CategoryContext } from "../categories/CategoryProvider";
 import { useHistory } from "react-router-dom";
 
@@ -24,7 +24,7 @@ export const PostForm = () => {
 
   //   const categories = [];
   // USE EFFECT ---------------------------------------------------------------------------------------------------
-  useEffect(async () => {
+  useEffect(() => {
     getCategories();
   }, []);
   console.log("useEffect done");

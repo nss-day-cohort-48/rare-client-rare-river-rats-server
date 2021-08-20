@@ -2,14 +2,12 @@ import React from "react";
 import { Route } from "react-router-dom";
 import { PostProvider } from "./posts/PostProvider";
 import { PostList } from "./posts/PostList";
-import { ProfileProvider } from "./auth/ProfileProvider";
-import { Profile } from "./auth/Profile.js"
 import { PostForm } from "./posts/PostForm";
-import { RareUserProvider } from "./rare_users/RareUserProvider";
-import { RareUserList } from "./rare_users/RareUserList";
-import { RareUserDetail } from "./rare_users/RareUserDetail";
-import { RareUserSearch } from "./rare_users/RareUserSearch";
-import { RareUserForm } from "./rare_users/RareUserForm";
+import { RareUserProvider } from "./RareUser/RareUserProvider";
+import { RareUserList } from "./RareUser/RareUserList";
+import { RareUserDetail } from "./RareUser/RareUserDetail";
+import { RareUserSearch } from "./RareUser/RareUserSearch";
+import { RareUserForm } from "./RareUser/RareUserForm";
 import { CategoryProvider } from "./categories/CategoryProvider";
 import { Category } from "./categories/Category";
 import { CategoryForm } from "./categories/CategoryForm";
@@ -17,6 +15,8 @@ import { TagProvider } from "./tags/TagProvider";
 import { Tag } from "./tags/Tag";
 import { TagForm } from "./tags/TagForm";
 // import { CommentProvider } from "./comments/CommentProvider";
+import { ProfileProvider } from "./auth/ProfileProvider";
+import { Profile } from "./auth/Profile.js"
 
 export const ApplicationViews = () => {
   return (
@@ -26,7 +26,7 @@ export const ApplicationViews = () => {
           margin: "5rem 2rem",
           lineHeight: "1.75rem",
         }}
-      ></main>
+      >
       <PostProvider>
         <CategoryProvider>
           <TagProvider>
@@ -57,7 +57,6 @@ export const ApplicationViews = () => {
           </TagProvider>
         </CategoryProvider>
       </PostProvider>
-      
       <RareUserProvider>
         <Route exact path="/rare_users/create">
           <RareUserForm />
@@ -74,17 +73,12 @@ export const ApplicationViews = () => {
         </Route>
       </RareUserProvider>
 
-      <RareUserProvider>
       <ProfileProvider>
-                <Route exact path="/profiles">
+                <Route exact path="/profile">
                     <Profile />
                 </Route>
-                <Route exact path="/RareUser/:rareUserId(\d+)">
-									<RareUserDetail />
-                  </Route>
             </ProfileProvider>
-            </RareUserProvider>
-      
+      </main>
     </>
   );
 };

@@ -22,18 +22,15 @@ export const PostProvider = (props) => {
       },
     }).then((res) => res.json());
   };
-
   const addPost = (post) => {
     return fetch("http://localhost:8000/posts", {
       method: "POST",
       headers: {
         Authorization: `Token ${localStorage.getItem("rare_token")}`,
         "Content-Type": "application/json",
-        "Authorization": `Token ${localStorage.getItem("rare_token")}`
       },
-      body: JSON.stringify(post)
-    })
-      .then(getPosts);
+      body: JSON.stringify(post),
+    }).then(getPosts);
   };
 
   const updatePost = (post) => {
@@ -41,22 +38,15 @@ export const PostProvider = (props) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Token ${localStorage.getItem("rare_token")}`
       },
-      body: JSON.stringify(post)
-    })
-      .then(getPosts);
+      body: JSON.stringify(post),
+    }).then(getPosts);
   };
 
   const deletePost = (postId) => {
     return fetch(`http://localhost:8000/posts/${postId}`, {
       method: "DELETE",
-      headers: {
-        "Authorization": `Token ${localStorage.getItem("rare_token")}`,
-        "Content-Type": "application/json"
-      }
-    })
-      .then(getPosts);
+    }).then(getPosts);
   };
 
   return (
