@@ -29,8 +29,10 @@ export const Profile = () => {
                         profile.is_staff ? "Admin" : "Rare_profile"
                     }
                     </div>
-                    ))}
-      </div>
-    </div>
-  );
+
+                </div>
+            ))
+            }
+        </div>
+    );
 };

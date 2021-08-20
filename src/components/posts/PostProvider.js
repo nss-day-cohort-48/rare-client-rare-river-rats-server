@@ -37,6 +37,7 @@ export const PostProvider = (props) => {
     return fetch(`http://localhost:8000/posts/${post.id}`, {
       method: "PUT",
       headers: {
+        Authorization: `Token ${localStorage.getItem("rare_token")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(post),
