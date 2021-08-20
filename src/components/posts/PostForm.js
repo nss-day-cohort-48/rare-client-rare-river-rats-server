@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { PostContext } from "./PostProvider";
 import "./Posts.css";
-import { RareUserContext } from "../RareUser/RareUserProvider";
+import { ProfileContext } from "../auth/ProfileProvider";
 import { CategoryContext } from "../categories/CategoryProvider";
 import { useHistory } from "react-router-dom";
 
@@ -11,23 +11,29 @@ export const PostForm = () => {
   const { categories, getCategories } = useContext(CategoryContext);
   // STATE --------------------------------------------------------------------------------------------------------
   const [post, setPost] = useState({
-    category_id: "",
+    category_id: 0,
     title: "",
     publication_date: "",
     image_url: "",
     content: "",
   });
+
+  // const { getProfile } = useContext(ProfileContext);
+  // const [profile, setProfile] = useState({});
   //   const [categories, setCategories] = useState([]);
   //   const { getRareUserById } = useContext(RareUserContext);
-  // --------------------------------------------------------------------------------------------------------------
+  // VARIABLES ----------------------------------------------------------------------------------------------------
   const history = useHistory();
-
+  const date = new Date();
+  const today =
+    date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
   //   const categories = [];
   // USE EFFECT ---------------------------------------------------------------------------------------------------
-  useEffect(async () => {
+  useEffect(() => {
     getCategories();
   }, []);
   console.log("useEffect done");
+
   // --------------------------------------------------------------------------------------------------------------
 
   // function handling publication date
@@ -56,11 +62,12 @@ export const PostForm = () => {
       window.alert("Please provide some content for your post");
     } else {
       const newPost = {
-        rare_user: "",
         title: post.title,
-        category_id: post.category_id,
+        category_id: parseInt(post.category_id),
         image_url: post.image_url,
         content: post.content,
+        publication_date: today,
+        approved: true,
       };
       addPost(newPost).then(() => history.push("/"));
     }
@@ -76,16 +83,21 @@ export const PostForm = () => {
           <label htmlFor="category_id">
             Pick a Category for Your New Post:
           </label>
-          <select htmlFor="">
+          <select
+            id="category_id"
+            value={post.category_id}
+            htmlFor=""
+            onChange={(e) => {
+              handleControlledInputChange(e);
+            }}
+          >
             {categories.map((category) => {
               return (
                 <option
                   className="postForm__categories"
                   id={category.id}
                   key={category.label}
-                  onClick={() => {
-                    handleControlledInputChange(category.id);
-                  }}
+                  value={category.id}
                 >
                   {category.label}
                 </option>
